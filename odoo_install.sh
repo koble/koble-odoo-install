@@ -70,7 +70,6 @@ declare -a addons=( \
 	"account-invoice-reporting" \
 	"reporting-engine" \
 	"connector" \
-	"connector-cmis" \
 	"maintainer-quality-tools" \
 	"stock-logistics-barcode" \
 	"product-variant" \
@@ -131,11 +130,11 @@ export LC_ALL=en_US.UTF-8
 ##--------------------------------------------------
 ## Install PostgreSQL Server
 ##--------------------------------------------------
-#echo -e "\n---- Install PostgreSQL Server ----"
-#sudo apt-get install postgresql -y
+echo -e "\n---- Install PostgreSQL Server ----"
+sudo apt-get install postgresql -y
 	
-#echo -e "\n---- PostgreSQL $PG_VERSION Settings  ----"
-#sudo sed -i s/"#listen_addresses = 'localhost'"/"listen_addresses = '*'"/g /etc/postgresql/`psql --version 2>&1 | tail -1 | awk '{print $3}' | sed 's/\./ /g' | awk '{print $1 "." $2}'`/main/postgresql.conf
+echo -e "\n---- PostgreSQL $PG_VERSION Settings  ----"
+sudo sed -i s/"#listen_addresses = 'localhost'"/"listen_addresses = '*'"/g /etc/postgresql/`psql --version 2>&1 | tail -1 | awk '{print $3}' | sed 's/\./ /g' | awk '{print $1 "." $2}'`/main/postgresql.conf
 
 #echo -e "\n---- Creating the ODOO PostgreSQL User  ----"
 sudo su - postgres -c "createuser -s $OE_USER" 2> /dev/null || true
@@ -153,17 +152,17 @@ sudo apt-get install python-pyodbc python-dateutil python-feedparser python-ldap
 sudo pip install gdata phonenumbers woocommerce magento sqlalchemy pymssql ofxparse cx_Oracle Shapely geojson
 
 #echo -e "\n---- Install wkhtml and place on correct place for ODOO 8 ----"
-#sudo wget http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
-#sudo dpkg -i wkhtmltox-0.12.1_linux-trusty-amd64.deb
-#sudo cp /usr/local/bin/wkhtmltopdf /usr/bin
-#sudo cp /usr/local/bin/wkhtmltoimage /usr/bin
+sudo wget http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
+sudo dpkg -i wkhtmltox-0.12.1_linux-trusty-amd64.deb
+sudo cp /usr/local/bin/wkhtmltopdf /usr/bin
+sudo cp /usr/local/bin/wkhtmltoimage /usr/bin
 	
 #echo -e "\n---- Create ODOO system user ----"
-#sudo adduser --system --quiet --shell=/bin/bash --home=$OE_HOME --gecos 'ODOO' --group $OE_USER
+sudo adduser --system --quiet --shell=/bin/bash --home=$OE_HOME --gecos 'ODOO' --group $OE_USER
 
 #echo -e "\n---- Create Log directory ----"
-#sudo mkdir /var/log/$OE_USER
-#sudo chown $OE_USER:$OE_USER /var/log/$OE_USER
+sudo mkdir /var/log/$OE_USER
+sudo chown $OE_USER:$OE_USER /var/log/$OE_USER
 
 #--------------------------------------------------
 # Install ODOO
