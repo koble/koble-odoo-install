@@ -188,7 +188,7 @@ do
 	  if [ -d $dir ] ; then
 	    if [[ ! $dir = *__unported__ ]] ; then
 	      if [[ ! $dir = *setup ]] ; then
-	        if [ -e $dir/__odoo__.py ] ; then
+	        if [ -e $dir/__init__.py ] ; then
 	          ln -s $dir $OE_HOME/custom/addons
 	        else
 	          ln -s $OE_HOME/custom/$i $OE_HOME/custom/addons
@@ -246,7 +246,7 @@ sudo su root -c "echo '; workers = 5' >> /etc/$OE_CONFIG.conf"
 
 echo -e "* Create startup file"
 sudo su root -c "echo '#!/bin/sh' >> $OE_HOME_EXT/start.sh"
-sudo su root -c "echo 'sudo -u $OE_USER $OE_HOME_EXT/openerp-server --config=/etc/$OE_CONFIG.conf' >> $OE_HOME_EXT/start.sh"
+sudo su root -c "echo 'sudo -u $OE_USER $OE_HOME_EXT/odoo-bin --config=/etc/$OE_CONFIG.conf' >> $OE_HOME_EXT/start.sh"
 sudo chmod 755 $OE_HOME_EXT/start.sh
 
 #--------------------------------------------------
@@ -267,14 +267,14 @@ echo '# Short-Description: Enterprise Business Applications' >> ~/$OE_CONFIG
 echo '# Description: ODOO Business Applications' >> ~/$OE_CONFIG
 echo '### END INIT INFO' >> ~/$OE_CONFIG
 echo 'PATH=/bin:/sbin:/usr/bin' >> ~/$OE_CONFIG
-echo "DAEMON=$OE_HOME_EXT/openerp-server" >> ~/$OE_CONFIG
+echo "DAEMON=$OE_HOME_EXT/odoo-bin" >> ~/$OE_CONFIG
 echo "NAME=$OE_CONFIG" >> ~/$OE_CONFIG
 echo "DESC=$OE_CONFIG" >> ~/$OE_CONFIG
 echo '' >> ~/$OE_CONFIG
 echo '# Specify the user name (Default: odoo).' >> ~/$OE_CONFIG
 echo "USER=$OE_USER" >> ~/$OE_CONFIG
 echo '' >> ~/$OE_CONFIG
-echo '# Specify an alternate config file (Default: /etc/openerp-server.conf).' >> ~/$OE_CONFIG
+echo '# Specify an alternate config file (Default: /etc/odoo-server.conf).' >> ~/$OE_CONFIG
 echo "CONFIGFILE=\"/etc/$OE_CONFIG.conf\"" >> ~/$OE_CONFIG
 echo '' >> ~/$OE_CONFIG
 echo '# pidfile' >> ~/$OE_CONFIG
