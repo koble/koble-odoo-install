@@ -17,17 +17,17 @@
 ################################################################################
  
 ##fixed parameters
-#openerp
+#odoo
 OE_USER="odoo"
 OE_HOME="/opt/$OE_USER"
 OE_HOME_EXT="/opt/$OE_USER/$OE_USER-server"
 OE_LOCALE="pt_BR.UTF-8"
 
 #Enter version for checkout "8.0" for version 8.0, "7.0 (version 7), saas-4, saas-5 (opendays version) and "master" for trunk
-OE_VERSION="8.0"
+OE_VERSION="10.0"
 
 #set the superadmin password
-OE_SUPERADMIN="Brga1501"
+OE_SUPERADMIN="admin"
 OE_CONFIG="$OE_USER-server"
 
 #list of custom addons to be installed
@@ -62,18 +62,15 @@ declare -a addons=( \
 	"contract" \
 	"management-system" \
 	"geospatial" \
-	"connector-telephony" \
 	"e-commerce" \
 	"stock-logistics-workflow" \
-	"connector-interfaces" \
 	"bank-statement-reconcile" \
 	"account-invoice-reporting" \
 	"reporting-engine" \
-	"connector" \
 	"maintainer-quality-tools" \
 	"stock-logistics-barcode" \
 	"product-variant" \
-	"carrier-delivery" \
+	"delivery-carrier" \
 	"vertical-isp" \
 	"survey" \
 	"account-closing" \
@@ -82,7 +79,6 @@ declare -a addons=( \
 	"pos" \
 	"vertical-association" \
 	"report-print-send" \
-	"program" \
 	"account-payment" \
 	"account-budgeting" \
 	"account-analytic" \
@@ -94,7 +90,6 @@ declare -a addons=( \
 	"hr-timesheet" \
 	"webkit-tools" \
 	"department" \
-	"odoo-sphinx-autodoc" \
 	"sale-financial" \
 	"margin-analysis" \
 	"stock-logistics-transport" \
@@ -107,10 +102,6 @@ declare -a addons=( \
 	"stock-logistics-tracking" \
 	"project-reporting" \
 	"manufacture-reporting" \
-	"connector-prestashop" \
-	"connector-odoo2odoo" \
-	"connector-lims" \
-	"connector-accountedge" \
 	"account-consolidation" 
 	)
 
@@ -146,7 +137,7 @@ echo -e "\n---- Install tool packages ----"
 sudo apt-get install wget subversion git bzr bzrtools python-pip unixodbc libgeos-dev -y
 	
 #echo -e "\n---- Install python packages ----"
-sudo apt-get install python-pyodbc python-dateutil python-feedparser python-ldap python-libxslt1 python-lxml python-mako python-openid python-psycopg2 python-pybabel python-pychart python-pydot python-pyparsing python-reportlab python-simplejson python-tz python-vatnumber python-vobject python-webdav python-werkzeug python-xlwt python-yaml python-zsi python-docutils python-psutil python-mock python-unittest2 python-jinja2 python-pypdf python-decorator python-requests python-passlib python-pil python-mysqldb -y
+sudo apt-get install python-pyodbc python-dateutil python-feedparser python-ldap python-libxslt1 python-lxml python-mako python-openid python-psycopg2 python-pybabel python-pychart python-pydot python-pyparsing python-reportlab python-simplejson python-tz python-vatnumber python-vobject python-webdav python-werkzeug python-xlwt python-yaml python-zsi python-docutils python-psutil python-mock python-unittest2 python-jinja2 python-pypdf python-decorator python-requests python-passlib python-pil python-mysqldb node-less -y
 	
 #echo -e "\n---- Install python libraries ----"
 sudo pip install gdata phonenumbers woocommerce magento sqlalchemy pymssql ofxparse Shapely geojson phonenumbers
@@ -185,7 +176,7 @@ do
 	echo -e "\n---- Download $i ----"
 	sudo git clone https://github.com/koble/`echo $i` \
         	--depth 1 \
-	        --branch 8.0 \
+	        --branch $OE_VERSION \
 		`echo $OE_HOME`/custom/`echo $i`
 
 	echo -e "---- Change permissions $i ----"
@@ -197,7 +188,7 @@ do
 	  if [ -d $dir ] ; then
 	    if [[ ! $dir = *__unported__ ]] ; then
 	      if [[ ! $dir = *setup ]] ; then
-	        if [ -e $dir/__openerp__.py ] ; then
+	        if [ -e $dir/__odoo__.py ] ; then
 	          ln -s $dir $OE_HOME/custom/addons
 	        else
 	          ln -s $OE_HOME/custom/$i $OE_HOME/custom/addons
@@ -242,7 +233,7 @@ cd -
 # Create Config Files
 #--------------------------------------------------
 echo -e "* Create server config file"
-sudo cp $OE_HOME_EXT/debian/openerp-server.conf /etc/$OE_CONFIG.conf
+sudo cp $OE_HOME_EXT/debian/odoo.conf /etc/$OE_CONFIG.conf
 sudo chown $OE_USER:$OE_USER /etc/$OE_CONFIG.conf
 sudo chmod 640 /etc/$OE_CONFIG.conf
 
