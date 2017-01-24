@@ -82,7 +82,6 @@ declare -a addons=( \
 	"pos" \
 	"vertical-association" \
 	"report-print-send" \
-	"program" \
 	"account-payment" \
 	"account-budgeting" \
 	"account-analytic" \
