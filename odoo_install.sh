@@ -106,7 +106,6 @@ declare -a addons=( \
 	"project-reporting" \
 	"manufacture-reporting" \
 	"connector-prestashop" \
-	"connector-odoo2odoo" \
 	"connector-lims" \
 	"connector-accountedge" \
 	"account-consolidation" 
