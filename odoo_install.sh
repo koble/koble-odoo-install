@@ -93,7 +93,6 @@ declare -a addons=( \
 	"hr-timesheet" \
 	"webkit-tools" \
 	"department" \
-	"odoo-sphinx-autodoc" \
 	"sale-financial" \
 	"margin-analysis" \
 	"stock-logistics-transport" \
