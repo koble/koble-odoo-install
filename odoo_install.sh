@@ -73,7 +73,7 @@ declare -a addons=( \
 	"maintainer-quality-tools" \
 	"stock-logistics-barcode" \
 	"product-variant" \
-	"carrier-delivery" \
+	"delivery-carrier" \
 	"vertical-isp" \
 	"survey" \
 	"account-closing" \
