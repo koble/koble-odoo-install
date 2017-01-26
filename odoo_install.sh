@@ -137,7 +137,7 @@ echo -e "\n---- Install tool packages ----"
 sudo apt-get install wget subversion git bzr bzrtools python-pip unixodbc libgeos-dev -y
 	
 #echo -e "\n---- Install python packages ----"
-sudo apt-get install python-pyodbc python-dateutil python-feedparser python-ldap python-libxslt1 python-lxml python-mako python-openid python-psycopg2 python-pybabel python-pychart python-pydot python-pyparsing python-reportlab python-simplejson python-tz python-vatnumber python-vobject python-webdav python-werkzeug python-xlwt python-yaml python-zsi python-docutils python-psutil python-mock python-unittest2 python-jinja2 python-pypdf python-decorator python-requests python-passlib python-pil python-mysqldb node-less -y
+sudo apt-get install python-pyodbc python-dateutil python-feedparser python-ldap python-libxslt1 python-lxml python-mako python-openid python-psycopg2 python-pybabel python-pychart python-pydot python-pyparsing python-reportlab python-simplejson python-tz python-vatnumber python-vobject python-webdav python-werkzeug python-xlwt python-yaml python-zsi python-docutils python-psutil python-mock python-unittest2 python-jinja2 python-pypdf python-decorator python-requests python-passlib python-pil python-mysqldb node-less python-xlsxwriter -y
 	
 #echo -e "\n---- Install python libraries ----"
 sudo pip install gdata phonenumbers woocommerce magento sqlalchemy pymssql ofxparse Shapely geojson phonenumbers
